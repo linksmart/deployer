@@ -2,6 +2,7 @@
 [![GoDoc](https://godoc.org/github.com/linksmart/deployer?status.svg)](https://godoc.org/github.com/linksmart/deployer)
 [![Docker Pulls](https://img.shields.io/docker/pulls/linksmart/deployment-manager.svg)](https://hub.docker.com/r/linksmart/deployment-manager/tags)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/linksmart/deployer.svg)](https://github.com/linksmart/deployer/tags)
+![CICD](https://github.com/linksmart/deployer/workflows/CICD/badge.svg)
 
 The LinkSmart Deployer is a lightweight software deployment system for IoT devices. It aims to provide secure, practical, and easy to use utilities for over-the-air (OTA) provisioning of software on single-board computers (e.g. Raspberry Pi). The project is currently under active development.
 
