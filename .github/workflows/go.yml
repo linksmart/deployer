@@ -1,0 +1,21 @@
+name: CICD
+
+on: [push, pull_request]
+
+jobs:
+
+  test:
+    name: Test the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.14
+        id: go
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        run: go test ./tests -v -failfast
