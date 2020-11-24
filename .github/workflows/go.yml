@@ -30,3 +30,6 @@ jobs:
         
       - name: Build Linux AMD64
         run: cd build/linux && sh build.sh
+      
+      - name: Build Linux ARMv7
+      - run: docker run -v $(pwd):/home farshidtz/zmq4-arm -mod=vendor -o deployment-agent-linux-arm ./agent
