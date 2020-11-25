@@ -36,7 +36,11 @@ jobs:
         run: docker run -v $(pwd):/home farshidtz/zmq4-arm -mod=vendor -o deployment-agent-linux-arm ./agent
       
       - name: Upload snapshots
-        uses: actions/upload-artifact@v1.0.0	
+        uses: actions/upload-artifact@v2
         with:	
           name: snapshots	
-          path:  build/linux/bin
+          path: |
+            build/linux/bin/deployment-manager-linux-amd64
+            build/linux/bin/deployment-agent-linux-amd64
+            deployment-agent-linux-arm
+          retention-days: 3
