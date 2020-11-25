@@ -91,9 +91,21 @@ jobs:
       - name: Build package (all arch)
         run: sh build/package/deb-all/build.sh ${{github.run_number}}
       
+      - name: Upload Debian package
+        uses: actions/upload-artifact@v2
+        with:	
+          name: deployment-agent-debian-package-all	
+          path: build/package/deb-all/*.deb
+          retention-days: 3
+          
+      - name: Build package (armv7)
+        run: sh build/package/deb-armv7/build.sh deployment-agent-linux-arm ${{github.run_number}}
+      
       - name: Upload Debian packages
         uses: actions/upload-artifact@v2
         with:	
-          name: debian-package-linux	
-          path: build/package/deb-all/*.deb
+          name: deployment-agent-debian-package-armv7
+          path: |
+            build/package/deb-armv7/*.deb
+            build/package/deb-armv7/install.sh
           retention-days: 3
