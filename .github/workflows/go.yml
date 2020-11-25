@@ -71,13 +71,13 @@ jobs:
         run: echo "${{secrets.CR_PAT}}" | docker login ghcr.io -u farshidtz --password-stdin
       
       - name: Build Manager 
-        run: docker build -f manager/Dockerfile -t ghcr.io/linksmart/deployer:manager --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
+        run: docker build -f manager/Dockerfile -t ghcr.io/linksmart/deployer/manager --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
 
       - name: Push Manager 
-        run: docker push ghcr.io/linksmart/deployer:manager
+        run: docker push ghcr.io/linksmart/deployer/manager
         
       - name: Build Agent
-        run: docker build -f agent/Dockerfile -t ghcr.io/linksmart/deployer:agent --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
+        run: docker build -f agent/Dockerfile -t ghcr.io/linksmart/deployer/agent --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
 
       - name: Push Agent 
-        run: docker push ghcr.io/linksmart/deployer:agent
+        run: docker push ghcr.io/linksmart/deployer/agent
