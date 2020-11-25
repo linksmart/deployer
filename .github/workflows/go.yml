@@ -5,9 +5,9 @@ on: [push]
 jobs:
 
   test:
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]') && !contains(toJSON(github.event.commits.*.message), '[skip-test]')"
     name: Test the code
     runs-on: ubuntu-latest
-    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]') && !contains(toJSON(github.event.commits.*.message), '[skip-test]')"
     steps:
       - name: Set up Go 1.x
         uses: actions/setup-go@v2
@@ -22,9 +22,9 @@ jobs:
         run: go test ./tests -v -failfast
         
   build:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     name: Build
     runs-on: ubuntu-latest
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -49,10 +49,11 @@ jobs:
           path: deployment-agent-linux-arm
           retention-days: 3
       
-  build-docker-image:
-    name: Build
-    runs-on: ubuntu-latest
+  build-docker:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    name: Build Docker Images
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -67,7 +68,7 @@ jobs:
 #         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
      
       - name: Github Container Registry login
-        run: echo $CR_PAT | docker login ghcr.io -u farshidtz --password-stdin
+        run: echo "${{secrets.CR_PAT}}" | docker login ghcr.io -u farshidtz --password-stdin
       
       - name: Build Manager
         run: docker build -f manager/Dockerfile -t ghcr.io/linksmart/deployer:manager --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
