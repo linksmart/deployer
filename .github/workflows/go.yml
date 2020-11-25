@@ -48,3 +48,30 @@ jobs:
           name: deployment-agent-linux-arm
           path: deployment-agent-linux-arm
           retention-days: 3
+      
+  build-docker-image:
+    name: Build
+    runs-on: ubuntu-latest
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: deployer-linux-amd64
+          path: bin
+      
+#       - name: Docker login
+#         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USER }}" --password-stdin
+     
+      - name: Github Container Registry login
+        run: echo $CR_PAT | docker login ghcr.io -u farshidtz --password-stdin
+      
+      - name: Build Manager
+        run: docker build -f manager/Dockerfile -t ghcr.io/linksmart/deployer:manager --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
+
+      - name: Push docker image
+        run: docker push ghcr.io/linksmart/deployer:manager
+        
