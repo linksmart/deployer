@@ -7,7 +7,7 @@ jobs:
   test:
     name: Test the code
     runs-on: ubuntu-latest
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]') && !contains(toJSON(github.event.commits.*.message), '[skip-test]')"
     steps:
       - name: Set up Go 1.x
         uses: actions/setup-go@v2
@@ -20,6 +20,7 @@ jobs:
 
       - name: Run tests
         run: go test ./tests -v -failfast
+        
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -33,3 +34,9 @@ jobs:
       
       - name: Build Linux ARMv7
         run: docker run -v $(pwd):/home farshidtz/zmq4-arm -mod=vendor -o deployment-agent-linux-arm ./agent
+      
+      - name: Upload snapshots
+        uses: actions/upload-artifact@v1.0.0	
+        with:	
+          name: snapshots	
+          path:  build/linux/bin
