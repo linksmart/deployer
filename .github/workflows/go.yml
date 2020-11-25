@@ -58,7 +58,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         
-      - name: Download a single artifact
+      - name: Download linux-amd64 snapshots
         uses: actions/download-artifact@v2
         with:
           name: deployer-linux-amd64
@@ -70,9 +70,14 @@ jobs:
       - name: Github Container Registry login
         run: echo "${{secrets.CR_PAT}}" | docker login ghcr.io -u farshidtz --password-stdin
       
-      - name: Build Manager
+      - name: Build Manager 
         run: docker build -f manager/Dockerfile -t ghcr.io/linksmart/deployer:manager --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
 
-      - name: Push docker image
+      - name: Push Manager 
         run: docker push ghcr.io/linksmart/deployer:manager
         
+      - name: Build Agent
+        run: docker build -f agent/Dockerfile -t ghcr.io/linksmart/deployer:agent --label "GITHUB_RUN_NUMBER=${{github.run_number}}" .
+
+      - name: Push Agent 
+        run: docker push ghcr.io/linksmart/deployer:agent
