@@ -29,18 +29,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         
-      - name: Build Linux AMD64
-        run: cd build/linux && sh build.sh
-      
-      - name: Build Linux ARMv7
-        run: docker run -v $(pwd):/home farshidtz/zmq4-arm -mod=vendor -o deployment-agent-linux-arm ./agent
-      
-      - name: Upload snapshots
+      - name: Build linux-amd64
+        run: sh build/linux/build.sh
+          
+      - name: Upload linux-amd64 snapshots (manager+agent)
         uses: actions/upload-artifact@v2
         with:	
-          name: snapshots	
-          path: |
-            build/linux/bin/deployment-manager-linux-amd64
-            build/linux/bin/deployment-agent-linux-amd64
-            deployment-agent-linux-arm
+          name: deployer-linux-amd64	
+          path: build/linux/bin
+          retention-days: 3
+      
+      - name: Build linux-arm
+        run: docker run -v $(pwd):/home farshidtz/zmq4-arm -mod=vendor -o deployment-agent-linux-arm ./agent
+      
+      - name: Upload linux-arm snapshot (agent)
+        uses: actions/upload-artifact@v2
+        with:	
+          name: deployment-agent-linux-arm
+          path: deployment-agent-linux-arm
           retention-days: 3
