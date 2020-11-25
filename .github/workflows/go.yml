@@ -22,7 +22,7 @@ jobs:
         run: go test ./tests -v -failfast
         
   build:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     name: Build Snapshots
     runs-on: ubuntu-latest
     steps:
@@ -50,7 +50,7 @@ jobs:
           retention-days: 3
       
   build-docker:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     name: Build Docker Images
     runs-on: ubuntu-latest
     needs: build
@@ -80,7 +80,7 @@ jobs:
         run: docker push ghcr.io/linksmart/deployer/agent
 
   build-debian:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     name: Build Debian Package
     runs-on: ubuntu-latest
     needs: build
@@ -97,7 +97,13 @@ jobs:
           name: deployment-agent-debian-package-all	
           path: build/package/deb-all/*.deb
           retention-days: 3
-          
+            
+      - name: Download linux-arm snapshot
+        uses: actions/download-artifact@v2
+        with:
+          name: deployment-agent-linux-arm
+          path: build/package/deb-armv7 
+           
       - name: Build package (armv7)
         run: sh build/package/deb-armv7/build.sh deployment-agent-linux-arm ${{github.run_number}}
       
