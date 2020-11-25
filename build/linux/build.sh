@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# This script should be executed from the same directory
+# change to script's directory to make paths relative to it
+cd $(dirname "$0")
 
 # cleanup old things
 rm -fr temp bin
