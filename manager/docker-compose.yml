@@ -16,7 +16,7 @@ services:
 #      - 9200:9200
     restart: unless-stopped
   manager:
-    image: linksmart/deployment-manager
+    image: ghcr.io/linksmart/deployer/manager
     depends_on:
       - elasticsearch
     environment:
