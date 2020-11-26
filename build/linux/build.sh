@@ -20,7 +20,7 @@ cp static-build.sh temp
 
 echo "Compiling... (IF HUNG, KILL THE CONTAINER!)"
 docker run --rm -v $(pwd)/temp:/home -v $(pwd)/bin:/home/bin \
-    farshidtz/zeromq:golang-linux-amd64-stretch sh static-build.sh
+    ghcr.io/linksmart/deployer/build:golang-linux-amd64-stretch sh static-build.sh
 
 echo "Cleaning up..."
 rm -fr temp
