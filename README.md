@@ -12,13 +12,13 @@ The LinkSmart Deployer is a lightweight software deployment system for IoT devic
 * :star: Deployment GUI: [source code](https://github.com/linksmart/deployer-ui) | [wiki](https://github.com/linksmart/deployer-ui/wiki)
 
 ## Deployment
-~Packages are built continuously with [Bamboo](https://pipelines.linksmart.eu/browse/CPSW-DTB/latest).~
+Snapshots and release artifacts are built using Github Actions. The releases are listed [here](https://github.com/linksmart/deployer/releases).
 
 ### Docker
 Docker compose scripts are available for [Deployment Manager](https://github.com/linksmart/deployer/blob/master/manager/docker-compose.yml) and dummy [Deployment Agents](https://github.com/linksmart/deployer/blob/master/agent/docker-compose.yml).
-### ~Install on Debian ARM~
+### Install Debian Package
+Download the suitable debian package and install. E.g.:
 ```bash
-wget https://pipelines.linksmart.eu/artifact/CPSW-DTB/shared/build-latest/Debian-packages/linksmart-deployment-agent.deb
 sudo apt install ./deployment-agent-linux-arm.deb
 ```
 
