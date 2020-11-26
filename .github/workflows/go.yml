@@ -101,7 +101,7 @@ jobs:
 
   integration-test:
     if: "!contains(toJSON(github.event.commits.*.message), '[skip-ci]') && !contains(toJSON(github.event.commits.*.message), '[skip-test]')"
-    name: Run integration tests
+    name: Run Integration Tests
     needs: build-docker
     runs-on: ubuntu-latest
     steps:
