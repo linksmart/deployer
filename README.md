@@ -8,7 +8,7 @@ The LinkSmart Deployer is a lightweight software deployment system for IoT devic
 ![LinkSmart Deployer - Conceptual Diagram](https://raw.githubusercontent.com/wiki/linksmart/deployer/figures/deployment-tool-concept-v3.jpg)
 
 ## Getting Started
-* Documentation: [wiki](https://github.com/linksmart/deployer/wiki) | [apidocs](https://app.swaggerhub.com/apis-docs/farshidtz8/deployment-tool)
+* Documentation: [wiki](https://github.com/linksmart/deployer/wiki) | [API doc - Swagger UI](https://linksmart.github.io/swagger-ui/dist/?url=https://raw.githubusercontent.com/linksmart/deployer/master/apidoc/openapi.yaml)
 * :star: Deployment GUI: [source code](https://github.com/linksmart/deployer-ui) | [wiki](https://github.com/linksmart/deployer-ui/wiki)
 
 ## Deployment
