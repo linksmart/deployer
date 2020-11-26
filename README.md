@@ -1,6 +1,5 @@
 # LinkSmart Deployer
 [![GoDoc](https://godoc.org/github.com/linksmart/deployer?status.svg)](https://godoc.org/github.com/linksmart/deployer)
-[![Docker Pulls](https://img.shields.io/docker/pulls/linksmart/deployment-manager.svg)](https://hub.docker.com/r/linksmart/deployment-manager/tags)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/linksmart/deployer.svg)](https://github.com/linksmart/deployer/tags)
 [![CICD](https://github.com/linksmart/deployer/workflows/CICD/badge.svg)](https://github.com/linksmart/deployer/actions?query=workflow%3ACICD)
 
