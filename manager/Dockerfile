@@ -15,6 +15,6 @@ EXPOSE 5556 5557 8080
 ENTRYPOINT ["./deployment-manager-linux-amd64"]
 
 # Generate key pair:
-# docker run --rm -v $(pwd)/volumes/keys:/home/keys linksmart/deployment-manager -newkeypair keys/manager
+# docker run --rm -v $(pwd)/volumes/keys:/home/keys ghcr.io/linksmart/deployer/manager -newkeypair keys/manager
 # Run:
-# docker run -p 8080:8080 -p 5556-5557:5556-5557 -v $(pwd)/volumes/keys:/home/keys --name=deployment-manager --restart=unless-stopped -d linksmart/deployment-manager
+# docker run -p 8080:8080 -p 5556-5557:5556-5557 -v $(pwd)/volumes/keys:/home/keys --name=deployment-manager --restart=unless-stopped -d ghcr.io/linksmart/deployer/manager

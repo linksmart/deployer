@@ -1,6 +1,9 @@
 #!/bin/sh -x
 set -e
 
+# change to script's directory to make paths relative to it
+cd $(dirname "$0")
+
 exec=$1
 version=$2
 name=linksmart-deployment-agent

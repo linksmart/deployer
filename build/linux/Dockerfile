@@ -17,4 +17,4 @@ RUN rm -fr /home/zeromq-$ZEROMQ_VER*
 WORKDIR /home
 
 # Build:
-# docker build -t farshidtz/zeromq:golang-linux-amd64-stretch .
+# docker build -t ghcr.io/linksmart/deployer/build:golang-linux-amd64-stretch .
