@@ -38,12 +38,12 @@ const (
 	elasticPort     = "9200"
 	elasticEndpoint = "http://" + elasticName + ":" + elasticPort
 	// manager
-	managerImage    = "linksmart/deployment-manager"
+	managerImage    = "ghcr.io/linksmart/deployer/manager"
 	managerName     = "test-manager"
 	managerPort     = "8080"
 	managerEndpoint = "http://" + managerName + ":" + managerPort
 	// agent
-	agentImage = "linksmart/deployment-agent"
+	agentImage = "ghcr.io/linksmart/deployer/agent"
 	agentName  = "test-agent"
 )
 
